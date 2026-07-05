@@ -8,24 +8,44 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: 'Segoe UI', sans-serif; }
         #gameCanvas { width: 100%; height: 100%; display: block; }
+        
         #hud {
             position: absolute; top: 20px; left: 20px;
             background: rgba(10, 10, 25, 0.8);
-            border: 2px solid #ff00ff;
+            border: 2px solid #00ffff;
             border-radius: 10px; padding: 15px 25px;
             color: #fff; min-width: 220px; pointer-events: none;
-            box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transition: 0.3s;
         }
+        
         .hud-line { font-size: 18px; font-weight: bold; margin-bottom: 8px; letter-spacing: 2px; }
-        .hud-line span { color: #00ffff; text-shadow: 0 0 8px #00ffff; }
+        .hud-line span { color: #ff00ff; text-shadow: 0 0 8px #ff00ff; }
+        
+        /* Màn hình Game Over ẩn đi ban đầu */
+        #gameOverScreen {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(255, 0, 85, 0.2); padding: 40px;
+            border: 2px solid #ff0055; border-radius: 15px;
+            text-align: center; color: white; display: none;
+            backdrop-filter: blur(5px); box-shadow: 0 0 30px #ff0055;
+        }
+        #gameOverScreen h1 { font-size: 40px; margin-bottom: 10px; color: #ff0055; text-shadow: 0 0 10px #ff0055; }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
     <div id="hud">
         <div class="hud-line">SCORE: <span id="scoreText">0</span></div>
-        <div class="hud-line">SPEED: <span id="speedText">MACH 2</span></div>
+        <div class="hud-line">SPEED: <span id="speedText">MACH 3</span></div>
     </div>
+
+    <div id="gameOverScreen">
+        <h1>CRASHED!</h1>
+        <p style="font-size: 20px;">Điểm của bạn: <b id="finalScore" style="color: #00ffff;">0</b></p>
+        <p style="margin-top: 15px; font-size: 14px; opacity: 0.8;">(F5 hoặc Load lại trang để chơi tiếp)</p>
+    </div>
+
     <div id="gameCanvas"></div>
     <script src="game.js"></script>
 </body>
